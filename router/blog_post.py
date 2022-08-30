@@ -1,5 +1,5 @@
 from typing import Optional, List
-from fastapi import APIRouter, Query, Body
+from fastapi import APIRouter, Query, Body, Path
 from pydantic import BaseModel
 
 router = APIRouter(prefix='/blog', tags=['blog'])
@@ -23,14 +23,14 @@ def edit_blog(blog: BlogModel, id: int, version: int = 1):
     'version': version
   }
 
-@router.post('/new/{id}/comment')
+@router.post('/new/{id}/comment/{comment_id}')
 def create_comment(
   blog: BlogModel, 
   id: int, 
-  comment_id: int = Query(None, 
+  comment_title: int = Query(None, 
     title='Id of the comment',
-    description='Some description for comment_id',
-    alias='commentId',
+    description='Some description for comment_title',
+    alias='commentTitle',
     deprecated=True
   ),
   content: str = Body(
@@ -39,12 +39,14 @@ def create_comment(
     max_length=12,
     regex='[a-z]'
   ),
+  comment_id: int = Path(None, ge=5, le=10),
   v: Optional[List[str]] = Query(['default1'])
 ):
   return {
     'blog': blog,
     'id': id,
-    'comment_id': comment_id,
+    'comment_title': comment_title,
+    'commend_id': comment_id,
     'content': content,
     'version': v
   }
