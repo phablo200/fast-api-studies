@@ -19,3 +19,16 @@ uvicorn main:app --reload
 # Fast Api has default docs
 /docs
 /redoc
+
+# Install sqlalchemy
+pip3 install sqlalchemy
+
+# Install passlib
+pip3 install passlib
+
+# Install bcrypt
+pip3 install bcrypt
+
+# Intall requirements.txt
+pip3 install -r requirements.txt
+
