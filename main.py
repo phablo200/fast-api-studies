@@ -1,5 +1,6 @@
 from fastapi import FastAPI, status, Response, Request, HTTPException
 from fastapi.responses import JSONResponse, PlainTextResponse
+from fastapi.middleware.cors import CORSMiddleware
 from enum import Enum
 
 from router import blog_get
@@ -33,6 +34,16 @@ def story_exception_handler(request: Request, exc: StoryException):
 # @app.exception_handler(HTTPException)
 # def custom_handler(request: Request, exc: StoryException):
 #   return PlainTextResponse(str(exc), status_code=400)
-
-
 models.Base.metadata.create_all(engine)
+
+origins = [
+  '*'
+]
+
+app.add_middleware(
+  CORSMiddleware, 
+  allow_origins = origins,
+  allow_credentials = True,
+  allow_methods = ['*'],
+  allow_headers = ['*']
+)

@@ -29,6 +29,9 @@ pip3 install passlib
 # Install bcrypt
 pip3 install bcrypt
 
-# Intall requirements.txt
+# Install requirements.txt
 pip3 install -r requirements.txt
+
+# Install Python-mulpart
+pip3 install python-multipart
 
