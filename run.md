@@ -29,9 +29,13 @@ pip3 install passlib
 # Install bcrypt
 pip3 install bcrypt
 
-# Install requirements.txt
-pip3 install -r requirements.txt
 
 # Install Python-mulpart
 pip3 install python-multipart
 
+
+# Install Python-jose
+pip3 install python-jose
+
+# Install all requirements.txt
+pip3 install -r requirements.txt
