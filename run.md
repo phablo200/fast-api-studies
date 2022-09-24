@@ -37,5 +37,8 @@ pip3 install python-multipart
 # Install Python-jose
 pip3 install python-jose
 
+# Install aiofiles
+pip3 install aiofiles
+
 # Install all requirements.txt
 pip3 install -r requirements.txt
