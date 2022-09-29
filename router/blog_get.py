@@ -1,6 +1,7 @@
 from typing import Optional
 from fastapi import APIRouter, status, Response, Depends
 from router.blog_post import required_functionally
+from custom_log import log
 
 router = APIRouter(
   prefix='/blog',
@@ -13,6 +14,8 @@ router = APIRouter(
   description='This api call simulates fetching all blogs'
 )
 def get_all_blog(page: int = 1, page_size: Optional[int] = None, req_parameter: dict = Depends(required_functionally)):
+  log('MyTest', 'call to get all saproducts')
+  
   return {
     'message': f'I am all blogs {page} and page_size {page_size}',
     'required_parameters': req_parameter

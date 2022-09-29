@@ -4,6 +4,9 @@ python3 -m venv fast-api-env
 # Activating venv
 source fast-api-env/bin/activate
 
+# Deactivating venv
+deactivate
+
 # Intsalling fastapi
 pip3 install fastapi
 
@@ -42,3 +45,7 @@ pip3 install aiofiles
 
 # Install all requirements.txt
 pip3 install -r requirements.txt
+
+
+# Execute the tests
+pytest
