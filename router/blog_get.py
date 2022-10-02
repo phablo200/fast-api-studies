@@ -1,6 +1,6 @@
 import time
 from typing import Optional
-from fastapi import APIRouter, status, Response, Depends
+from fastapi import APIRouter, status, Response, Depends, BackgroundTasks
 
 from router.blog_post import required_functionally
 from custom_log import log
@@ -20,9 +20,15 @@ async def time_consuming_functionality():
   summary='Retrieve all blogs',
   description='This api call simulates fetching all blogs'
 )
-async def get_all_blog(page: int = 1, page_size: Optional[int] = None, req_parameter: dict = Depends(required_functionally)):
+async def get_all_blog(
+  background_task: BackgroundTasks, 
+  page: int = 1, 
+  page_size: Optional[int] = None, 
+  req_parameter: dict = Depends(required_functionally)
+):
   await time_consuming_functionality()
-  #log('MyTest', 'call to get all saproducts')
+  log('MyTest', 'call to get all saproducts')
+  background_task.add_task(log('Background task', 'executing this function in background'))
   
   return {
     'message': f'I am all blogs {page} and page_size {page_size}',
