@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse, PlainTextResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.websockets import WebSocket
+from fastapi.param_functions import Depends
 from enum import Enum
 
 from auth import authentication
@@ -12,6 +13,7 @@ from exceptions import StoryException
 from db import models
 from db.database import engine
 from client import user_chat
+from custom_log import log
 
 app = FastAPI()
 app.include_router(file.router)

@@ -3,3 +3,10 @@ MyTest: call to get all saproducts
 MyTest: call to get all saproducts
 MyTest: call to get all saproducts
 Background task: executing this function in background
+Alive: Any message
+MyApp: Some message
+URL: http://localhost:8000/dependencies/alive?tag=MyApp&message=Some%20message
+MyApp: Second message
+URL: http://localhost:8000/dependencies?tag=MyApp&message=Second%20message&separator=--
+MyApp: user/alive
+URL: http://localhost:8000/user/alive?tag=MyApp&message=user%2Falive

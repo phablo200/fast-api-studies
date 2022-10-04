@@ -1,20 +1,29 @@
 from fastapi import APIRouter
 from fastapi.requests import Request
 from fastapi.param_functions import Depends
+from custom_log import log
 
 router = APIRouter(
   prefix='/dependencies',
-  tags=['/dependencies']
+  tags=['/dependencies'],
+  dependencies=[Depends(log)]
 )
 
-def convert_headers(request: Request, separator: str = '--', user: str = 'Phablo'):
+def convert_queries(request: Request, separator: str = '--'):
+  out_query = []
+  for key, value in request.query_params.items():
+    out_query.append(f'{key} {separator} {value}')
+
+  return out_query
+
+def convert_headers(request: Request, separator: str = '--', query = Depends(convert_queries)):
   out_headers = []
   for key, value in request.headers.items():
     out_headers.append(f'{key} {separator} {value}')
 
   return {
-    'items': out_headers,
-    'user': user
+    'headers': out_headers,
+    'query': query
   }
 
 
